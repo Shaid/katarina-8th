@@ -2,24 +2,36 @@
 import { getCollection } from 'astro:content';
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // Component Imports
-import CallToAction from '../components/CallToAction.astro';
-import Grid from '../components/Grid.astro';
-import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
-import Pill from '../components/Pill.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Grid from '../../components/Grid.astro';
+import Hero from '../../components/Hero.astro';
+import Icon from '../../components/Icon.astro';
+import Pill from '../../components/Pill.astro';
+import PortfolioPreview from '../../components/PortfolioPreview.astro';
 
 // Page section components
-import ContactCTA from '../components/ContactCTA.astro';
-import Skills from '../components/Skills.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import Skills from '../../components/Skills.astro';
 
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 4);
+
+export function getStaticPaths() {
+  return [
+    {params: {name: 'cassandra'}},
+	{params: {name: 'emma'}},
+	{params: {name: 'kaylee'}},
+	{params: {name: 'georgia'}},
+	
+  ]
+}
+
+const { name } = Astro.params
 
 const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1)) as Capitalize<typeof s>
 
@@ -32,10 +44,14 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title=`Hello, my name is Katarina!``
-					tagline="This is a website for my 8th party, but you shouldn't be here."
+					title=`Hello ${capitalise(name)}, my name is Katarina!``
+					tagline="I am excited to invite you to my Squishmallow Movie Night!"
 					align="start"
 				>
+					<div class="roles">
+						<Pill><Icon icon="microphone-stage" size="1.33em" /> Choose the movie!</Pill>
+						
+					</div>
 				</Hero>
 
 				<img
@@ -46,10 +62,12 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 				/>
 			</header>
 
+			<Skills />
 		</div>
 
 		</main>
 
+		
 	</div>
 </BaseLayout>
 
