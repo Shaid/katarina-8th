@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-
+import { Image } from 'astro:assets'
+import squishImage from '../../../public/assets/squishmallows_output.png';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -44,8 +45,8 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title=`Hello ${capitalise(name)}, my name is Katarina!``
-					tagline="I am excited to invite you to my Squishmallow Movie Night!"
+					title=`Hello ${capitalise(name)}!``
+					tagline="You are invited to Katarina's Squishmallow Movie Night!"
 					align="start"
 				>
 					<div class="roles">
@@ -53,11 +54,12 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 					</div>
 				</Hero>
 
-				<img
+				<Image 
 					alt="artwork of a number of squishmallows"
-					width="480"
-					height="620"
-					src="/assets/squishmallows_output.png"
+					width={480}
+					height={960}
+					densities={[1, 1.5, 2, 3, 4]}
+					src={squishImage}
 				/>
 			</header>
 
