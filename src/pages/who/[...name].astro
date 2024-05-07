@@ -2,20 +2,58 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets'
 
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// Component Imports
-import Hero from '../components/Hero.astro';
+import Hero from '../../components/Hero.astro';
+import Icon from '../../components/Icon.astro';
+import Pill from '../../components/Pill.astro';
+import squishImage from '../../../public/assets/squishmallows_output.png';
 
-// Page section components
-import squishImage from '../../public/assets/squishmallows_output.png';
+import Skills from '../../components/Skills.astro';
 
+export function getStaticPaths() {
+	const invitees = [
+		'cassandra',
+		'edie', 'matilda',
+		'emma', 'luke',
+		'maddie',
+		'maggie',
+		'georgia',
+		'kaylee', 'patrick',
+		'jolie',
+		'rodine',
+		'anara',
+		'milly',
+		'zara',
+		'amelie', 'caleb',
+		'joy',
+		'olympia', 'eleni',
+		'nathan', 'talia',
+		'melody',
+		'charli', 'mason',
+		'nova', 'orion',
+		'sage',
+		'sarah', 'reana',
+	]
+	
+	const staticPaths = [] 
+	for (var invitee of invitees) {
+		staticPaths.push(
+			{
+				params: { 
+					name: invitee
+				}
+			}
+		)
+	}
+		
+  return staticPaths
+}
+
+const { name } = Astro.params
 
 const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1)) as Capitalize<typeof s>
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
 ---
 
 <BaseLayout>
@@ -23,25 +61,29 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title=`Hello, my name is Katarina!``
-					tagline="This is a website for my 8th birthday party, but you shouldn't be here without an invitation."
+					title=`Hello ${capitalise(name)}!``
+					tagline="You are invited to Katarina's Squishmallow Movie Night!"
 					align="start"
 				>
+					<div class="roles">
+						<Pill><Icon icon="microphone-stage" size="1.33em" /> Choose the movie!</Pill>
+					</div>
 				</Hero>
 
 				<Image 
 					alt="artwork of a number of squishmallows"
-					width={480}
-					height={960}
+					height={480}
 					densities={[1, 1.5, 2, 3, 4]}
 					src={squishImage}
 				/>
 			</header>
+
+			<Skills />
 		</div>
 
-		<main>
-
 		</main>
+
+		
 	</div>
 </BaseLayout>
 
@@ -51,6 +93,10 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 		flex-direction: column;
 		align-items: center;
 		gap: 2rem;
+	}
+
+	.roles {
+		display: none;
 	}
 
 	.hero img {
@@ -67,6 +113,12 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 			grid-template-columns: 6fr 4fr;
 			padding-inline: 2.5rem;
 			gap: 3.75rem;
+		}
+
+		.roles {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 0.5rem;
 		}
 
 		.hero img {
