@@ -70,26 +70,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	</noscript>
 	<div id="menu-content" hidden>
 		<ul class="nav-items">
-			{
-				textLinks.map(({ label, href }) => (
-					<li>
-						<a
-							aria-current={Astro.url.pathname === href}
-							class:list={[
-								'link',
-								{
-									active:
-										Astro.url.pathname === href ||
-										(href !== '/' && Astro.url.pathname.startsWith(href)),
-								},
-							]}
-							href={href}
-						>
-							{label}
-						</a>
-					</li>
-				))
-			}
+			
 		</ul>
 		<div class="menu-footer">
 			<div class="socials">
@@ -212,6 +193,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	.nav-items {
 		margin: 0;
 		display: flex;
+		visibility: hidden;
 		flex-direction: column;
 		gap: 1rem;
 		font-size: var(--text-md);
