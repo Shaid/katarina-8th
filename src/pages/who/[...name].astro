@@ -9,7 +9,7 @@ import Icon from '../../components/Icon.astro';
 import Pill from '../../components/Pill.astro';
 import squishImage from '../../../public/assets/squishmallows_output.png';
 
-import Skills from '../../components/Skills.astro';
+import Actions from '../../components/Actions.astro';
 
 export function getStaticPaths() {
 	const invitees = [
@@ -54,6 +54,22 @@ const { name } = Astro.params
 
 const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1)) as Capitalize<typeof s>
 
+let overrides = {}
+
+if ( name == "cassandra") {
+	overrides = {
+		name: "cass",
+		extraMsg: "You don't need an invite, you're the barista and you LIVE HERE."
+	}
+}
+
+if ( name == "milly") {
+	overrides = {
+		name: "millie",
+		extraMsg: "I'm very sorry that your name is spelled incorrectly on the invite!"
+	}
+}
+
 ---
 
 <BaseLayout>
@@ -61,10 +77,13 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title=`Hello ${capitalise(name)}!``
+					title=`Hello ${capitalise(overrides.name || name)}!``
 					tagline="You are invited to Katarina's Squishmallow Movie Night!"
 					align="start"
 				>
+					<div class="">
+						{overrides.extraMsg || ""}
+					</div>
 					<div class="roles">
 						<Pill><Icon icon="microphone-stage" size="1.33em" /> Choose the movie! (Coming soon!)</Pill>
 					</div>
@@ -78,7 +97,7 @@ const capitalise = <T extends string>(s: T) => (s[0].toUpperCase() + s.slice(1))
 				/>
 			</header>
 
-			<Skills />
+			<Actions />
 		</div>
 
 		</main>
