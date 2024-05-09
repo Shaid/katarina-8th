@@ -10,8 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.7.1",
     "@astrojs/check": "^0.5.10",
+    "@astrojs/preact": "^3.3.0",
+    "@netlify/blobs": "^7.3.0",
+    "@netlify/functions": "^2.6.3",
+    "astro": "^4.7.1",
+    "preact": "^10.21.0",
     "typescript": "^5.4.5"
   }
 }
