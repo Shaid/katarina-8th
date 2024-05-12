@@ -1,13 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets'
 
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro'
 
-import Hero from '../../components/Hero.astro';
-import Icon from '../../components/Icon.astro';
-import Pill from '../../components/Pill.astro';
-import squishImage from '../../../public/assets/squishmallows_output.png';
+import Hero from '../../components/Hero.astro'
+import Icon from '../../components/Icon.astro'
+import Pill from '../../components/Pill.astro'
+import PartyFormComponent from '../../components/PartyFormComponent.tsx'
+
+import squishImage from '../../../public/assets/squishmallows_output.png'
+import baymax from "../../../public/assets/movies/baymax.png"
+import mitchells from "../../../public/assets/movies/mitchells.png"
+import up from "../../../public/assets/movies/up.png"
+import sing from "../../../public/assets/movies/sing.png"
+import badguys from "../../../public/assets/movies/badguys.png"
+import lego from "../../../public/assets/movies/lego.png"
+
 
 import Actions from '../../components/Actions.astro';
 
@@ -81,23 +89,43 @@ if ( name == "milly") {
 					tagline="You are invited to Katarina's Squishmallow Movie Night!"
 					align="start"
 				>
-					<div class="">
+					<div>
 						{overrides.extraMsg || ""}
 					</div>
 					<div>
 						<Pill><Icon icon="microphone-stage" size="1.33em" /> Voting for the movie will be available on Monday, May 13th.</h3></Pill>
 					</div>
 				</Hero>
-
+				
 				<Image 
-					alt="artwork of a number of squishmallows"
-					height={480}
-					densities={[1, 1.5, 2, 3, 4]}
-					src={squishImage}
+				alt="artwork of a number of squishmallows"
+				height={480}
+				densities={[1, 1.5, 2, 3, 4]}
+				src={squishImage}
 				/>
 			</header>
-
+			
 			<Actions />
+			<PartyFormComponent client:visible>
+				<input name="movie" type="radio" id="movie_baymax" /><label for="movie_baymax">
+					<Image src={baymax} alt="Big Hero 6" />					
+				</label>
+                <input name="movie" type="radio" id="movie_mitchells" /><label for="movie_mitchells">
+					<Image src={mitchells} alt="The Mitchells vs. the Machines" />
+				</label>
+                <input name="movie" type="radio" id="movie_up" /><label for="movie_up">
+					<Image src={up} alt="Up" />
+				</label>
+                <input name="movie" type="radio" id="movie_sing" /><label for="movie_sing">
+					<Image src={sing} alt="Sing" />			
+				</label>
+                <input name="movie" type="radio" id="movie_badguys" /><label for="movie_badguys">
+					<Image src={badguys} alt="The Bad Guys" />
+				</label>
+                <input name="movie" type="radio"id="movie_lego" /><label for="movie_lego">
+					<Image src={lego} alt="The LEGO Movie" />					
+				</label>
+			</PartyFormComponent>
 		</div>
 
 		</main>
@@ -249,4 +277,61 @@ if ( name == "milly") {
 			height: 9.5rem;
 		}
 	}
+
+	
+input[type="radio"][id^="movie_"] {
+    display: none;
+  }
+  
+  label {
+    padding: 1rem;
+    display: block;
+	float: left;
+    position: relative;
+    margin: 1rem;
+    cursor: pointer;
+  }
+  
+  label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+	box-shadow: 0 0 5px #333;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.2s;
+    transform: scale(0);
+	z-index: 10;
+  }
+  
+  label img {
+    height: 300px;
+    width: auto;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+  }
+  
+  :checked + label {
+    border-color: #cf5707;
+  }
+  
+  :checked + label:before {
+    content: "✓";
+    background-color: grey;
+    transform: scale(1);
+  }
+  
+  :checked + label img {
+    transform: scale(1.2);
+    box-shadow: 0 0 5px #333;
+    z-index: -10;
+  }
+	
 </style>
