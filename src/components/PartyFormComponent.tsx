@@ -29,14 +29,14 @@ const selections = signal({
 
 
 const getState = async (who: string) => {
-    const data = await fetch(`${baseUrl}/getBlob/${who}`)
+    const data = await fetch(`${baseUrl}/api/get/${who}`)
     console.log('BLOB GET', data)
 }
 
 
 const pushState = async (who: string) => {
     console.log('BLOB PUSH')
-    await fetch(`${baseUrl}/setBlob/${who}`, {
+    await fetch(`${baseUrl}/api/set/${who}`, {
         method: 'POST',
         body: JSON.stringify({
             movie: selections.movie,

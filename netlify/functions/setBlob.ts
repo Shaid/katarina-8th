@@ -1,4 +1,4 @@
-import type { Context } from "@netlify/functions"
+import type { Config, Context } from "@netlify/functions"
 import { getStore } from "@netlify/blobs";
 
 export default async (request: Request, context: Context) => {
@@ -10,3 +10,7 @@ export default async (request: Request, context: Context) => {
 
     return new Response(`Userdata for ${who} updated successfully.`)
 };
+
+export const config: Config = {
+  path: "/api/set/:who"
+}
