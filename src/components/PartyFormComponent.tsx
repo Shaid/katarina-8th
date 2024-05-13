@@ -35,7 +35,7 @@ const getState = async (who: string) => {
 
     if(typeof window !== 'undefined') {
         window.document.getElementById(`movie_${newState.movie}`).checked
-        window.document.getElementByName(`allergies`).value = newState.food
+        window.document.getElementById(`text_allergies`).value = newState.food
     }
     selections.movie = newState.movie
     selections.food = newState.food
@@ -64,7 +64,7 @@ export default (props: Props) =>
             return (
                 <form name='PartyForm' >
                     <div>If you have any food allergies please write them below</div>
-                    <input type="text" name="allergies" onChange={e => processForm(e, props)} value={selections.food}/>
+                    <input type="text" id="text_allergies" name="allergies" onChange={e => processForm(e, props)} value={selections.food}/>
                     <fieldset ref={moviesRef} onClick={debounce(e => pickMovie(e, props), 1000)}>
                         <legend>
                             <h4>Voting for the movie</h4>
