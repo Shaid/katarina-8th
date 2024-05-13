@@ -29,10 +29,11 @@ const selections = signal({
 
 
 const getState = async (who: string) => {
-    console.log(moviesRef)
-
+    
     const data = await fetch(`${baseUrl}/api/get/${who}`)
     const newState = await data.json()
+    console.log(moviesRef, newState)
+
     if(typeof window !== 'undefined') {
         document.getElementById(`movie_${newState.movie}`).checked
     }
