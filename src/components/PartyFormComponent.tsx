@@ -51,20 +51,21 @@ export default (props: Props) =>
         console.log(props)
 
         getState(props.who)
+        if(props.who == 'cassandra') {
+            return (
+                <form name='PartyForm' >
+                    <div>If you have any food allergies please write them below</div>
+                    <input type="text" name="test" onChange={e => processForm(e, props)} defaultValue={selections.food}/>
+                    <fieldset onClick={debounce(e => pickMovie(e, props), 1000)}>
+                        <legend>
+                            <h4>Voting for the movie</h4>
+                        </legend>
+                        {props.children}
+                    </fieldset>
+                </form>
 
-        return (
-            <form name='PartyForm' >
-                <div>If you have any food allergies please write them below</div>
-                <input type="text" name="test" onChange={e => processForm(e, props)} defaultValue={selections.food}/>
-                <fieldset onClick={debounce(e => pickMovie(e, props), 1000)}>
-                    <legend>
-                        <h4>Voting for the movie</h4>
-                    </legend>
-                    {props.children}
-                </fieldset>
-            </form>
-
-        )
+            )
+        }
     }
 
    
