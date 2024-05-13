@@ -1,7 +1,7 @@
 import type { Props } from 'astro'
 
+import { createRef } from 'preact'
 import { signal } from "@preact/signals"
-import { useEffect } from 'preact/hooks'
 import debounce from 'debounce'
 
 const baseUrl = 'https://katarinas-8th.paperkat.art'
@@ -29,8 +29,16 @@ const selections = signal({
 
 
 const getState = async (who: string) => {
+    console.log(moviesRef)
+
     const data = await fetch(`${baseUrl}/api/get/${who}`)
-    console.log('BLOB GET', data)
+    const newState = await data.json()
+    document.getElementById(`movie_${newState.movie}`).checked
+    selections.movie = newState.movie
+    selections.food = newState.movie
+    
+
+    return data
 }
 
 
@@ -46,17 +54,18 @@ const pushState = async (who: string) => {
 
 }
 
+const moviesRef = createRef();
+
 export default (props: Props) =>
     {
-        console.log(props)
-
         getState(props.who)
+
         if(props.who == 'cassandra') {
             return (
                 <form name='PartyForm' >
                     <div>If you have any food allergies please write them below</div>
-                    <input type="text" name="test" onChange={e => processForm(e, props)} defaultValue={selections.food}/>
-                    <fieldset onClick={debounce(e => pickMovie(e, props), 1000)}>
+                    <input type="text" name="test" onChange={e => processForm(e, props)} value={selections.food}/>
+                    <fieldset ref={moviesRef} onClick={debounce(e => pickMovie(e, props), 1000)}>
                         <legend>
                             <h4>Voting for the movie</h4>
                         </legend>
