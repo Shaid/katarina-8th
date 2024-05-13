@@ -81,11 +81,10 @@ if ( name == "milly") {
 
 if ( name == "muffins") {
 	overrides = {
-		name: "Jes or Paige ",
-		extraMsg: "Yes everyone got their own unique page because I'm silly."
+		name: "Jes or Paige",
+		extraMsg: "Yes, everyone got their own unique page because I'm silly."
 	}
 }
-
 
 ---
 
@@ -114,7 +113,7 @@ if ( name == "muffins") {
 				/>
 			</header>
 			
-			<Actions />
+			
 			<PartyFormComponent client:only="preact" who={name}>
 				<input name="movie" type="radio" id="movie_baymax" value="baymax"/>
 					<label for="movie_baymax">
@@ -141,6 +140,8 @@ if ( name == "muffins") {
 					<Image src={lego} alt="The LEGO Movie" />					
 				</label>
 			</PartyFormComponent>
+
+			<Actions />
 		</div>
 
 		</main>
