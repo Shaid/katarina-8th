@@ -2,12 +2,9 @@ import type { Props } from 'astro'
 
 import { signal } from "@preact/signals"
 import { useEffect } from 'preact/hooks'
-import getBlob from '../utils/getBlob'
-import setBlob from '../utils/setBlob'
 import debounce from 'debounce'
 
-//import getBlob from "../utils/getBlob"
-//import setBlob from "../utils/setBlob"
+const baseUrl = 'https://katarinas-8th.paperkat.art'
 
 const processForm = (e: Event, props: Props) => {
     const input: EventTarget | null = e.target
@@ -32,16 +29,19 @@ const selections = signal({
 
 
 const getState = async (who: string) => {
-    const data = await getBlob(who)
+    const data = await fetch(`${baseUrl}/getBlob/${who}`)
     console.log('BLOB GET', data)
 }
 
 
 const pushState = async (who: string) => {
     console.log('BLOB PUSH')
-    await setBlob(who, {
-        movie: selections.movie,
-        food: selections.food
+    await fetch(`${baseUrl}/setBlob/${who}`, {
+        method: 'POST',
+        body: JSON.stringify({
+            movie: selections.movie,
+            food: selections.food
+        })
     })
 
 }
