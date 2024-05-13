@@ -34,7 +34,7 @@ const getState = async (who: string) => {
     console.log(moviesRef, newState)
 
     if(typeof window !== 'undefined') {
-        window.document.getElementById(`movie_${newState.movie}`).checked
+        window.document.getElementById(`movie_${newState.movie}`).checked = true
         window.document.getElementById(`text_allergies`).value = newState.food
     }
     selections.movie = newState.movie
