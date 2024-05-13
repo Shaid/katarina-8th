@@ -1,5 +1,6 @@
 import type { Config, Context } from "@netlify/functions"
 import { getStore } from "@netlify/blobs";
+import { defaultFetchOptions } from './defaults.ts'
 
 export default async (request: Request, context: Context) => {
     const { who } = context.params  
@@ -8,7 +9,7 @@ export default async (request: Request, context: Context) => {
 
     await store.setJSON(who, payload)
 
-    return new Response(`Userdata for ${who} updated successfully.`)
+    return new Response(`Userdata for ${who} updated successfully.`, defaultFetchOptions)
 };
 
 export const config: Config = {
