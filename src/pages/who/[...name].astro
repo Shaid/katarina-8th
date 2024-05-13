@@ -115,7 +115,7 @@ if ( name == "muffins") {
 			</header>
 			
 			<Actions />
-			<PartyFormComponent client:visible who={name}>
+			<PartyFormComponent client:only="preact" who={name}>
 				<input name="movie" type="radio" id="movie_baymax" value="baymax"/>
 					<label for="movie_baymax">
 					<Image src={baymax} alt="Big Hero 6" />					

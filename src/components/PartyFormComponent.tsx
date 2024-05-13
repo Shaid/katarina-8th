@@ -33,7 +33,9 @@ const getState = async (who: string) => {
 
     const data = await fetch(`${baseUrl}/api/get/${who}`)
     const newState = await data.json()
-    document.getElementById(`movie_${newState.movie}`).checked
+    if(typeof window !== 'undefined') {
+        document.getElementById(`movie_${newState.movie}`).checked
+    }
     selections.movie = newState.movie
     selections.food = newState.movie
     
