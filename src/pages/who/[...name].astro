@@ -106,23 +106,29 @@ if ( name == "milly") {
 			</header>
 			
 			<Actions />
-			<PartyFormComponent client:visible>
-				<input name="movie" type="radio" id="movie_baymax" /><label for="movie_baymax">
+			<PartyFormComponent client:visible who={name}>
+				<input name="movie" type="radio" id="movie_baymax" value="baymax"/>
+					<label for="movie_baymax">
 					<Image src={baymax} alt="Big Hero 6" />					
 				</label>
-                <input name="movie" type="radio" id="movie_mitchells" /><label for="movie_mitchells">
+                <input name="movie" type="radio" id="movie_mitchells" value="mitchells" />
+					<label for="movie_mitchells">
 					<Image src={mitchells} alt="The Mitchells vs. the Machines" />
 				</label>
-                <input name="movie" type="radio" id="movie_up" /><label for="movie_up">
+                <input name="movie" type="radio" id="movie_up" value="up" />
+					<label for="movie_up">
 					<Image src={up} alt="Up" />
 				</label>
-                <input name="movie" type="radio" id="movie_sing" /><label for="movie_sing">
+                <input name="movie" type="radio" id="movie_sing" value="sing" />
+					<label for="movie_sing">
 					<Image src={sing} alt="Sing" />			
 				</label>
-                <input name="movie" type="radio" id="movie_badguys" /><label for="movie_badguys">
+                <input name="movie" type="radio" id="movie_badguys" value="badguys" />
+					<label for="movie_badguys">
 					<Image src={badguys} alt="The Bad Guys" />
 				</label>
-                <input name="movie" type="radio"id="movie_lego" /><label for="movie_lego">
+                <input name="movie" type="radio"id="movie_lego" value="lego" />
+					<label for="movie_lego">
 					<Image src={lego} alt="The LEGO Movie" />					
 				</label>
 			</PartyFormComponent>
@@ -312,7 +318,7 @@ input[type="radio"][id^="movie_"] {
   }
   
   label img {
-    height: 300px;
+    height: 15rem;
     width: auto;
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
