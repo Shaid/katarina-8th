@@ -25,7 +25,7 @@ export default async (request: Request, context: Context) => {
 	}
     console.log('got data!', votes.length, votes)
   
-    return new Response(votes, defaultFetchOptions)
+    return new Response(JSON.stringify(votes), defaultFetchOptions)
 }
 
 export const config: Config = {
