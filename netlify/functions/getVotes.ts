@@ -9,8 +9,8 @@ export default async (request: Request, context: Context) => {
       name: "katarinas-8th",
     })
     console.log('got store')
-    const data = await store.list({paginate: true})
-    console.log('got data!', data)
+    const { blobs } = await store.list({paginate: true})
+    console.log('got data!', blobs)
   
     return new Response(data, defaultFetchOptions)
 }
