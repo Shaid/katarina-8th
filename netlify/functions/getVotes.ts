@@ -9,7 +9,7 @@ export default async (request: Request, context: Context) => {
       name: "katarinas-8th",
       consistency: "strong" 
     })
-    const data = await store.list(who)
+    const { data } = await store.list()
   
     return new Response(data, defaultFetchOptions)
 }
