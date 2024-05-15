@@ -10,18 +10,9 @@ export default async (request: Request, context: Context) => {
     })
     console.log('got store')
   
-    let blobCount = 0;
-
-    for await (const entry of store.list({ paginate: true })) {
-      blobCount += entry.blobs.length;
-  
-      console.log(entry.blobs);
-    }
-  
-    return new Response(`Found ${blobCount} blobs`);
   
     const { blobs } = await store.list()
-    console.log('got data!', blobs)
+    console.log('got data!', blobs.length, blobs)
   
     return new Response(blobs, defaultFetchOptions)
 }
