@@ -15,39 +15,12 @@ import up from "../../../public/assets/movies/up.png"
 import sing from "../../../public/assets/movies/sing.png"
 import badguys from "../../../public/assets/movies/badguys.png"
 import lego from "../../../public/assets/movies/lego.png"
-
+import invitees from '../../data/invitees.ts'
 
 import Actions from '../../components/Actions.astro';
 
-export function getStaticPaths() {
-	const invitees = [
-		'cassandra',
-		'edie', 'matilda',
-		'emma', 'luke',
-		'maddie',
-		'maggie',
-		'georgia',
-		'kaylee', 'patrick',
-		'jolie',
-		'rodine',
-		'anara',
-		'milly',
-		'zara',
-		'amelie', 'caleb',
-		'joy',
-		'olympia', 'eleni',
-		'nathan', 'talia',
-		'melody',
-		'charli', 'mason',
-		'nova', 'orion',
-		'sage',
-		'sarah', 'reana',
-		'muffins',
-		'katarina',
-		'lukas',
-        'janet',	
-	]
-	
+
+export function getStaticPaths() {	
 	const staticPaths = [] 
 	for (var invitee of invitees) {
 		staticPaths.push(

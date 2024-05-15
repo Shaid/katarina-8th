@@ -2,6 +2,8 @@ import type { Config, Context } from "@netlify/functions"
 import { getStore } from "@netlify/blobs"
 import { defaultFetchOptions } from './defaults.ts'
 
+import invitees from '../../src/data/invitees.ts'
+
 
 export default async (request: Request, context: Context) => {
     console.log('starting')
@@ -10,11 +12,16 @@ export default async (request: Request, context: Context) => {
     })
     console.log('got store')
   
+    console.log('Looping over:' invitees)
   
-    const { blobs } = await store.list()
-    console.log('got data!', blobs.length, blobs)
+    const votes: Array<number> = []
+
+    for (var invitee of invitees) {
+		votes[invitee]++
+	}
+    console.log('got data!', votes.length, votes)
   
-    return new Response(blobs, defaultFetchOptions)
+    return new Response(votes, defaultFetchOptions)
 }
 
 export const config: Config = {
