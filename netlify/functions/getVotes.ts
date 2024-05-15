@@ -9,7 +9,7 @@ export default async (request: Request, context: Context) => {
       name: "katarinas-8th",
     })
     console.log('got store')
-    const { data } = await store.list({paginate: true})
+    const data = await store.list()
     console.log('got data!', data)
   
     return new Response(data, defaultFetchOptions)
