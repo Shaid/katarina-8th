@@ -20,7 +20,7 @@ export default async (request: Request, context: Context) => {
         const vote = await store.get(invitee, { type: 'json'})
         console.log(invitee, vote)
         if(vote && typeof vote.movie !== undefined) {
-		    votes[vote.movie]++
+		    votes[vote.movie] = (votes[vote.movie] || 0) + 1
         }
 	}
     console.log('got data!', votes.length, votes)
