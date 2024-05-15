@@ -9,6 +9,7 @@ export default async (request: Request, context: Context) => {
     console.log('starting')
     const store = getStore({
       name: "katarinas-8th",
+      consistency: "strong",
     })
     console.log('got store')
   
