@@ -18,7 +18,8 @@ export default async (request: Request, context: Context) => {
 
     for (var invitee of invitees) {
         const vote = await store.get(invitee)
-		votes[invitee.movie]++
+        console.log(invitee, vote)
+		votes[vote.movie]++
 	}
     console.log('got data!', votes.length, votes)
   
