@@ -4,12 +4,13 @@ import { defaultFetchOptions } from './defaults.ts'
 
 
 export default async (request: Request, context: Context) => {
-    const { who } = context.params
+    console.log('starting')
     const store = getStore({
       name: "katarinas-8th",
     })
+    console.log('got store')
     const { data } = await store.list()
-    console.log(data)
+    console.log('got data!', data)
   
     return new Response(data, defaultFetchOptions)
 }
