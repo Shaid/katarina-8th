@@ -12,7 +12,7 @@ export default async (request: Request, context: Context) => {
     })
     console.log('got store')
   
-    console.log('Looping over:' invitees)
+    console.log('Looping over:', invitees)
   
     const votes: Array<number> = []
 
