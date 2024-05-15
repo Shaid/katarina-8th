@@ -12,7 +12,7 @@ export default async (request: Request, context: Context) => {
     const { blobs } = await store.list({paginate: true})
     console.log('got data!', blobs)
   
-    return new Response(data, defaultFetchOptions)
+    return new Response(blobs, defaultFetchOptions)
 }
 
 export const config: Config = {
