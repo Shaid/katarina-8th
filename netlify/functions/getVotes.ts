@@ -14,7 +14,7 @@ export default async (request: Request, context: Context) => {
   
     console.log('Looping over:', invitees)
   
-    const votes: Array<number> = []
+    const votes: object = {}
 
     for (var invitee of invitees) {
         const vote = await store.get(invitee, { type: 'json'})
@@ -23,7 +23,7 @@ export default async (request: Request, context: Context) => {
 		    votes[vote.movie] = (votes[vote.movie] || 0) + 1
         }
 	}
-    console.log('got data!', votes.length, votes)
+    console.log('got data!', votes)
   
     return new Response(JSON.stringify(votes), defaultFetchOptions)
 }
