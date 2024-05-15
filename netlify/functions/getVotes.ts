@@ -9,12 +9,12 @@ export default async (request: Request, context: Context) => {
       name: "katarinas-8th",
     })
     console.log('got store')
-    const { data } = await store.list()
+    const { data } = await store.list({paginate: true})
     console.log('got data!', data)
   
     return new Response(data, defaultFetchOptions)
 }
 
 export const config: Config = {
-  path: "/api/votes/"
+  path: "/api/votes"
 }
