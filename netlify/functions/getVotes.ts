@@ -17,7 +17,7 @@ export default async (request: Request, context: Context) => {
     const votes: Array<number> = []
 
     for (var invitee of invitees) {
-        const vote = await store.get(invitee)
+        const vote = await store.get(invitee, { type: 'json'})
         console.log(invitee, vote, typeof vote, typeof vote.movie)
         if(typeof vote !== null && typeof vote.movie !== undefined) {
 		    votes[vote.movie]++
